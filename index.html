@@ -7,12 +7,13 @@
   <style>
     body {
       font-family: 'Roboto', Arial, sans-serif;
-      background: linear-gradient(120deg, #d6eaff 0%, #e2e2f6 100%);
+      background: linear-gradient(120deg, #01b1fa 0%, #1e4158 100%);
       margin: 0;
       padding: 0;
     }
     .container {
       max-width: 1200px;
+      height: 100%;
       margin: 40px auto;
       background: #fff;
       border-radius: 18px;
@@ -23,21 +24,31 @@
       font-family: 'Montserrat', Arial, sans-serif;
       text-align: center;
       font-size: 2.6rem;
-      color: #3B3A60;
+      color: #01b1fa;
       margin-bottom: 30px;
       letter-spacing: 1px;
     }
     .modelos {
       display: flex;
       flex-wrap: wrap;
-      gap: 36px;
+      gap: 80px;
       justify-content: center;
     }
-    .modelo {
+    .modelo.netfi {
       width: 420px;
-      background: #f8fafc;
+      background: #01b1fa;
+      border-color: ;
       border-radius: 14px;
-      box-shadow: 0 2px 12px #0001;
+      padding: 22px 18px;
+      margin-bottom: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .modelo.linnke {
+      width: 420px;
+      background: #1e4158;
+      border-color: ;
+      border-radius: 14px;
       padding: 22px 18px;
       margin-bottom: 24px;
       transition: transform 0.2s, box-shadow 0.2s;
@@ -45,17 +56,22 @@
     }
     .modelo:hover {
       transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 8px 28px #3B3A6088;
-      z-index:2;
     }
     iframe {
       width: 100%;
-      height: 340px;
+      height: 440px;
       border: 2px solid #b3b6de;
       border-radius: 9px;
       background: #fff;
       margin-bottom: 12px;
-      box-shadow: 0 1px 6px #3B3A6033;
+      box-shadow: 0 1px 6px #b3b6de;
+      transition: box-shadow 0.2s;
+    }
+    .modelo.netfi iframe {
+      box-shadow: 0 1px 12px #01b1fa;
+    }
+    .modelo.linnke iframe {
+      box-shadow: 0 1px 12px #1e4158;
     }
     .titulo {
       font-family: 'Montserrat', Arial, sans-serif;
@@ -63,22 +79,33 @@
       font-weight: bold;
       margin-bottom: 9px;
       text-align: center;
-      color: #415a77;
+      color: #ffffff;
     }
-    .fullscreen-btn {
+    .fullscreen-btn.netfi {
       display: block;
+      font-family: 'Roboto', Arial, sans-serif;
       margin: 0 auto 10px auto;
       padding: 6px 16px;
-      background: #3B3A60;
-      color: #fff;
+      background: #ffffff;
+      color: #01b1fa;
       border: none;
       border-radius: 6px;
       cursor: pointer;
       font-size: 0.95rem;
       transition: background 0.2s;
     }
-    .fullscreen-btn:hover {
-      background: #5964a7;
+     .fullscreen-btn.linnke {
+      display: block;
+      font-family: 'Roboto', Arial, sans-serif;
+      margin: 0 auto 10px auto;
+      padding: 6px 16px;
+      background: #ffffff;
+      color: #1e4158;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s;
     }
     @media (max-width: 900px) {
       .modelos { flex-direction: column; align-items: center; }
@@ -95,34 +122,34 @@
   <div class="container">
     <h1>Portfólio de Modelos de Fatura</h1>
     <div class="modelos">
-      <div class="modelo">
+      <div class="modelo netfi">
         <div class="titulo">Fatura NETFI (5 dias antes)</div>
-        <button class="fullscreen-btn" onclick="openFullscreen('FATURA_NETFI.html')">Ver em tela cheia</button>
+        <button class="fullscreen-btn netfi" onclick="openFullscreen('FATURA_NETFI.html')">Ver em tela cheia</button>
         <iframe src="FATURA_NETFI.html"></iframe>
       </div>
-      <div class="modelo">
+      <div class="modelo linnke">
         <div class="titulo">Fatura LINNKE (5 dias antes)</div>
-        <button class="fullscreen-btn" onclick="openFullscreen('FATURA_LINNKE.html')">Ver em tela cheia</button>
+        <button class="fullscreen-btn linnke" onclick="openFullscreen('FATURA_LINNKE.html')">Ver em tela cheia</button>
         <iframe src="FATURA_LINNKE.html"></iframe>
       </div>
-      <div class="modelo">
+      <div class="modelo netfi">
         <div class="titulo">Aviso NETFI (3 dias após)</div>
-        <button class="fullscreen-btn" onclick="openFullscreen('3_DIAS_APÓS_NETFI.html')">Ver em tela cheia</button>
+        <button class="fullscreen-btn netfi" onclick="openFullscreen('3_DIAS_APÓS_NETFI.html')">Ver em tela cheia</button>
         <iframe src="3_DIAS_APÓS_NETFI.html"></iframe>
       </div>
-      <div class="modelo">
+      <div class="modelo linnke">
         <div class="titulo">Aviso LINNKE (3 dias após)</div>
-        <button class="fullscreen-btn" onclick="openFullscreen('3_DIAS_APÓS_LINNKE.html')">Ver em tela cheia</button>
+        <button class="fullscreen-btn linnke" onclick="openFullscreen('3_DIAS_APÓS_LINNKE.html')">Ver em tela cheia</button>
         <iframe src="3_DIAS_APÓS_LINNKE.html"></iframe>
       </div>
-      <div class="modelo">
+      <div class="modelo netfi">
         <div class="titulo">Aviso NETFI (10 dias após)</div>
-        <button class="fullscreen-btn" onclick="openFullscreen('10_DIAS_APÓS_NETFI.html')">Ver em tela cheia</button>
+        <button class="fullscreen-btn netfi" onclick="openFullscreen('10_DIAS_APÓS_NETFI.html')">Ver em tela cheia</button>
         <iframe src="10_DIAS_APÓS_NETFI.html"></iframe>
       </div>
-      <div class="modelo">
+      <div class="modelo linnke">
         <div class="titulo">Aviso LINNKE (10 dias após)</div>
-        <button class="fullscreen-btn" onclick="openFullscreen('10_DIAS_APÓS_LINNKE.html')">Ver em tela cheia</button>
+        <button class="fullscreen-btn linnke" onclick="openFullscreen('10_DIAS_APÓS_LINNKE.html')">Ver em tela cheia</button>
         <iframe src="10_DIAS_APÓS_LINNKE.html"></iframe>
       </div>
     </div>

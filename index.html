@@ -3,19 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <title>Portfólio de Modelos de Fatura</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; background: #f5f5f5; }
-    .container { max-width: 1100px; margin: 40px auto; background: #fff; border-radius: 10px; padding: 30px; box-shadow: 0 2px 8px #0002; }
-    h1 { text-align: center; }
-    .modelos { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
-    .modelo { width: 480px; background: #fafafa; border-radius: 8px; box-shadow: 0 1px 4px #0001; padding: 15px; margin-bottom: 20px; }
-    iframe { width: 100%; height: 420px; border: 1px solid #ccc; border-radius: 6px; background: #fff; }
-    .titulo { font-weight: bold; margin-bottom: 10px; text-align: center; }
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: linear-gradient(120deg, #d6eaff 0%, #e2e2f6 100%);
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 18px;
+      padding: 40px 30px;
+      box-shadow: 0 4px 24px #0002;
+    }
+    h1 {
+      font-family: 'Montserrat', Arial, sans-serif;
+      text-align: center;
+      font-size: 2.6rem;
+      color: #3B3A60;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+    .modelos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 36px;
+      justify-content: center;
+    }
+    .modelo {
+      width: 420px;
+      background: #f8fafc;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px #0001;
+      padding: 22px 18px;
+      margin-bottom: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .modelo:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 28px #3B3A6088;
+      z-index:2;
+    }
+    iframe {
+      width: 100%;
+      height: 340px;
+      border: 2px solid #b3b6de;
+      border-radius: 9px;
+      background: #fff;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 6px #3B3A6033;
+    }
+    .titulo {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.18rem;
+      font-weight: bold;
+      margin-bottom: 9px;
+      text-align: center;
+      color: #415a77;
+    }
+    .fullscreen-btn {
+      display: block;
+      margin: 0 auto 10px auto;
+      padding: 6px 16px;
+      background: #3B3A60;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .fullscreen-btn:hover {
+      background: #5964a7;
+    }
     @media (max-width: 900px) {
       .modelos { flex-direction: column; align-items: center; }
       .modelo { width: 98%; }
     }
   </style>
+  <script>
+    function openFullscreen(src) {
+      window.open(src, '_blank');
+    }
+  </script>
 </head>
 <body>
   <div class="container">
@@ -23,27 +97,33 @@
     <div class="modelos">
       <div class="modelo">
         <div class="titulo">Fatura NETFI (5 dias antes)</div>
-        <iframe src="FATURA NETFI.html"></iframe>
+        <button class="fullscreen-btn" onclick="openFullscreen('NETFI-TEMPLATES/FATURA NETFI.html')">Ver em tela cheia</button>
+        <iframe src="NETFI-TEMPLATES/FATURA NETFI.html"></iframe>
       </div>
       <div class="modelo">
         <div class="titulo">Fatura LINNKE (5 dias antes)</div>
-        <iframe src="FATURA LINNKE.html"></iframe>
+        <button class="fullscreen-btn" onclick="openFullscreen('NETFI-TEMPLATES/FATURA LINNKE.html')">Ver em tela cheia</button>
+        <iframe src="NETFI-TEMPLATES/FATURA LINNKE.html"></iframe>
       </div>
       <div class="modelo">
         <div class="titulo">Aviso NETFI (3 dias após)</div>
-        <iframe src="3 DIAS APÓS - NETFI.html"></iframe>
+        <button class="fullscreen-btn" onclick="openFullscreen('NETFI-TEMPLATES/3 DIAS APÓS - NETFI.html')">Ver em tela cheia</button>
+        <iframe src="NETFI-TEMPLATES/3 DIAS APÓS - NETFI.html"></iframe>
       </div>
       <div class="modelo">
         <div class="titulo">Aviso LINNKE (3 dias após)</div>
-        <iframe src="3 DIAS APÓS - LINNKE.html"></iframe>
+        <button class="fullscreen-btn" onclick="openFullscreen('NETFI-TEMPLATES/3 DIAS APÓS - LINNKE.html')">Ver em tela cheia</button>
+        <iframe src="NETFI-TEMPLATES/3 DIAS APÓS - LINNKE.html"></iframe>
       </div>
       <div class="modelo">
         <div class="titulo">Aviso NETFI (10 dias após)</div>
-        <iframe src="10 DIAS APÓS - NETFI.html"></iframe>
+        <button class="fullscreen-btn" onclick="openFullscreen('NETFI-TEMPLATES/10 DIAS APÓS - NETFI.html')">Ver em tela cheia</button>
+        <iframe src="NETFI-TEMPLATES/10 DIAS APÓS - NETFI.html"></iframe>
       </div>
       <div class="modelo">
         <div class="titulo">Aviso LINNKE (10 dias após)</div>
-        <iframe src="10 DIAS APÓS - LINNKE.html"></iframe>
+        <button class="fullscreen-btn" onclick="openFullscreen('NETFI-TEMPLATES/10 DIAS APÓS - LINNKE.html')">Ver em tela cheia</button>
+        <iframe src="NETFI-TEMPLATES/10 DIAS APÓS - LINNKE.html"></iframe>
       </div>
     </div>
   </div>

@@ -88,27 +88,62 @@
       display: block;
       font-family: 'Roboto', Arial, sans-serif;
       margin: 0 auto 10px auto;
-      padding: 6px 16px;
-      background: #ffffff;
-      color: #01b1fa;
+      padding: 10px 20px;
+      background: #01b1fa;
+      color: inherit;
       border: none;
-      border-radius: 6px;
+      border-radius: 24px;
       cursor: pointer;
-      font-size: 0.95rem;
-      transition: background 0.2s;
+      font-size: 1.01rem;
+      font-weight: bold;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+      letter-spacing: 0.5px;
+      outline: none;
+      position: relative;
+      overflow: hidden;
     }
-     .fullscreen-btn.linnke {
+    .fullscreen-btn.linnke {
       display: block;
       font-family: 'Roboto', Arial, sans-serif;
       margin: 0 auto 10px auto;
-      padding: 6px 16px;
-      background: #ffffff;
-      color: #1e4158;
+      padding: 10px 20px;
+      background: #1e4158;
+      color: inherit;
       border: none;
-      border-radius: 6px;
+      border-radius: 24px;
       cursor: pointer;
-      font-size: 0.95rem;
-      transition: background 0.2s;
+      font-size: 1.01rem;
+      font-weight: bold;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+      letter-spacing: 0.5px;
+      outline: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .fullscreen-btn.netfi {
+      color: #ffffff;
+    }
+    .fullscreen-btn.linnke {
+      color: #ffffff;
+    }
+    .fullscreen-btn.netfi:hover, .fullscreen-btn.linnke:hover {
+      background: linear-gradient(90deg, #f0faff 60%, #e6f7ff 100%);
+      box-shadow: 0 4px 16px #0002;
+      transform: translateY(-2px) scale(1.04);
+    }
+    .fullscreen-btn.netfi:hover {
+      color: #01b1fa;
+      border: 1px solid #01b1fa;
+      background:#ffffff;
+    }
+    .fullscreen-btn.linnke:hover {
+      color: #1e4158;
+      border: 1px solid #1e4158;
+      background: #ffffff;
+    }
+    .fullscreen-btn:active {
+      transform: scale(0.98);
+      box-shadow: 0 1px 4px #0001;
     }
     @media (max-width: 900px) {
       .modelos { flex-direction: column; align-items: center; }
@@ -129,7 +164,7 @@
       border-radius: 16px;
       box-shadow: 0 8px 40px #0005;
       max-width: 900px;
-      width: 90vw;
+      width: 70vw;
       max-height: 90vh;
       padding: 0;
       position: relative;
@@ -146,7 +181,7 @@
     }
     #fullscreen-iframe {
       width: 100%;
-      height: 70vh;
+      height: 120vh;
       border: none;
       border-radius: 16px 16px 0 0;
       background: #fff;
@@ -167,8 +202,19 @@
       box-shadow: 0 2px 8px #0002;
       transition: background 0.2s;
     }
-    #close-fullscreen:hover {
+    #close-fullscreen.netfi {
+      background: #01b1fa;
+      color: #fff;
+    }
+    #close-fullscreen.linnke {
       background: #1e4158;
+      color: #fff;
+    }
+    #close-fullscreen.netfi:hover {
+      background: #ff0000;
+    }
+    #close-fullscreen.linnke:hover {
+      background: #ff0000;
     }
     #back-fullscreen {
       position: absolute;
@@ -194,24 +240,39 @@
     }
   </style>
   <script>
-    function openFullscreen(src) {
+    function openFullscreen(src, modelClass) {
       const overlay = document.getElementById('fullscreen-overlay');
       const modal = document.getElementById('fullscreen-modal');
       const iframe = document.getElementById('fullscreen-iframe');
+      const closeBtn = document.getElementById('close-fullscreen');
+      closeBtn.classList.remove('netfi', 'linnke');
+      if (modelClass) closeBtn.classList.add(modelClass);
       iframe.src = src;
       overlay.style.display = 'flex';
       setTimeout(() => {
         modal.classList.add('show');
       }, 10);
     }
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.fullscreen-btn').forEach(function(btn) {
+        btn.onclick = function(e) {
+          e.preventDefault();
+          const src = this.getAttribute('onclick').match(/\('(.*?)'/)[1];
+          const modelClass = this.classList.contains('netfi') ? 'netfi' : 'linnke';
+          openFullscreen(src, modelClass);
+        };
+      });
+    });
     function closeFullscreen() {
       const overlay = document.getElementById('fullscreen-overlay');
       const modal = document.getElementById('fullscreen-modal');
       const iframe = document.getElementById('fullscreen-iframe');
+      const closeBtn = document.getElementById('close-fullscreen');
       modal.classList.remove('show');
       setTimeout(() => {
         overlay.style.display = 'none';
         iframe.src = '';
+        closeBtn.classList.remove('netfi', 'linnke');
       }, 300);
     }
     window.addEventListener('keydown', function(e) {
@@ -223,7 +284,6 @@
   <div id="fullscreen-overlay">
     <div id="fullscreen-modal">
       <button id="close-fullscreen" onclick="closeFullscreen()" title="Fechar">&times;</button>
-      <button id="back-fullscreen" onclick="closeFullscreen()" title="Voltar">Voltar</button>
       <iframe id="fullscreen-iframe" src="" allowfullscreen></iframe>
     </div>
   </div>

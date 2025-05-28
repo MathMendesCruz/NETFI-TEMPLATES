@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Modelos de Fatura</title>
+  <title>Modelos NETFI e LINNKE</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap" rel="stylesheet">
   <style>
     body {
@@ -114,16 +114,121 @@
       .modelos { flex-direction: column; align-items: center; }
       .modelo { width: 98%; }
     }
+    #fullscreen-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(30, 65, 88, 0.85);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    #fullscreen-modal {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 40px #0005;
+      max-width: 900px;
+      width: 90vw;
+      max-height: 90vh;
+      padding: 0;
+      position: relative;
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity 0.3s, transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    #fullscreen-modal.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+    #fullscreen-iframe {
+      width: 100%;
+      height: 70vh;
+      border: none;
+      border-radius: 16px 16px 0 0;
+      background: #fff;
+    }
+    #close-fullscreen {
+      position: absolute;
+      top: 10px;
+      right: 18px;
+      background: #01b1fa;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 2;
+      box-shadow: 0 2px 8px #0002;
+      transition: background 0.2s;
+    }
+    #close-fullscreen:hover {
+      background: #1e4158;
+    }
+    #back-fullscreen {
+      position: absolute;
+      top: 10px;
+      right: 70px;
+      background: #ff4081;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      z-index: 2;
+      box-shadow: 0 2px 8px #0002;
+      transition: background 0.2s;
+    }
+    #back-fullscreen:hover {
+      background: #e91e63;
+    }
+    @media (max-width: 600px) {
+      #fullscreen-modal { max-width: 99vw; }
+      #fullscreen-iframe { height: 55vh; }
+    }
   </style>
   <script>
     function openFullscreen(src) {
-      window.open(src, '_blank');
+      const overlay = document.getElementById('fullscreen-overlay');
+      const modal = document.getElementById('fullscreen-modal');
+      const iframe = document.getElementById('fullscreen-iframe');
+      iframe.src = src;
+      overlay.style.display = 'flex';
+      setTimeout(() => {
+        modal.classList.add('show');
+      }, 10);
     }
+    function closeFullscreen() {
+      const overlay = document.getElementById('fullscreen-overlay');
+      const modal = document.getElementById('fullscreen-modal');
+      const iframe = document.getElementById('fullscreen-iframe');
+      modal.classList.remove('show');
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        iframe.src = '';
+      }, 300);
+    }
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeFullscreen();
+    });
   </script>
 </head>
 <body>
+  <div id="fullscreen-overlay">
+    <div id="fullscreen-modal">
+      <button id="close-fullscreen" onclick="closeFullscreen()" title="Fechar">&times;</button>
+      <button id="back-fullscreen" onclick="closeFullscreen()" title="Voltar">Voltar</button>
+      <iframe id="fullscreen-iframe" src="" allowfullscreen></iframe>
+    </div>
+  </div>
   <div class="container">
-    <h1>Modelos de Fatura</h1>
+    <h1>Modelos de E-mail</h1>
     <div class="modelos">
       <div class="modelo netfi">
         <div class="titulo">Fatura NETFI (5 dias antes)</div>
@@ -154,6 +259,21 @@
         <div class="titulo">Aviso LINNKE (10 dias após)</div>
         <button class="fullscreen-btn linnke" onclick="openFullscreen('10_DIAS_APÓS_LINNKE.html')">Ver em tela cheia</button>
         <iframe src="10_DIAS_APÓS_LINNKE.html"></iframe>
+      </div>
+      <div class="modelo netfi">
+        <div class="titulo">Assinatura NETFI</div>
+        <button class="fullscreen-btn netfi" onclick="openFullscreen('ASSINATURA_NETFI.html')">Ver em tela cheia</button>
+        <iframe src="ASSINATURA_NETFI.html"></iframe>
+      </div>
+      <div class="modelo linnke">
+        <div class="titulo">Assinatura LINNKE</div>
+        <button class="fullscreen-btn linnke" onclick="openFullscreen('ASSINATURA_LINNKE.html')">Ver em tela cheia</button>
+        <iframe src="ASSINATURA_LINNKE.html"></iframe>
+      </div>
+      <div class="modelo netfi">
+        <div class="titulo">Fatura LINNKE e NETFI</div>
+        <button class="fullscreen-btn netfi" onclick="openFullscreen('FATURA_LINNKE_E_NETFI.html')">Ver em tela cheia</button>
+        <iframe src="FATURA_LINNKE_E_NETFI.html"></iframe>
       </div>
     </div>
   </div>
